@@ -2,6 +2,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
 
+
+/**
+ * Este main es solo para probar las conversiones :DDD
+ * su tiempo se está agotando.
+ * 
+ */
 class Main2{
 	public static void main(String[] args){
 		PosfixCalc calc = new PosfixCalc();
@@ -22,11 +28,9 @@ class Main2{
 		}
 
 		for(int i = 0; i<lineas.size() ; i++){
-			try{
-				System.out.println(lineas.get(i));
-				System.out.println(calc.toPostfix(lineas.get(i)));
-			} catch(IndexOutOfBoundsException e){
-			}
+			System.out.println("Infix: " + lineas.get(i));
+			System.out.println("Postfix: " + calc.toPostfix(lineas.get(i)));
+			System.out.println("Evaluacion: " + calc.Evaluate(calc.toPostfix(lineas.get(i))) + "\n");
 		}
 	}
 }

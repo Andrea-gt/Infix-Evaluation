@@ -63,36 +63,55 @@ class PosfixCalc implements IPosfixCalc{
 		return stack.peek(); //Se retorna el (que deberia ser el) unico elemento en el stack, el cual es el resultado de la expresion
 	}
 
-	public String toPostfix(String expresion){
+	public String toPostfix(String expresion){ //La cantidad de .charAt(0) que hay en este metodo es mi castigo divino por usar Character en vez de char. todo bien.
 		String postfix = "";
-		StackArrayList<Character> stack = new StackArrayList<Character>();
-		for(int i = 0; i<expresion.length(); i++){
-			if(Character.isDigit(expresion.charAt(i))){
-				postfix += expresion.charAt(i);
-			}else if(!Character.isWhitespace(expresion.charAt(i))){
-				System.out.println(expresion.charAt(i));
-				switch(Character.toString(expresion.charAt(i))){
-					case "+":
-						stack.push(expresion.charAt(i));
-						break;
-					case "-":
-						stack.push(expresion.charAt(i));
-						break;
-					case "*":
-						stack.push(expresion.charAt(i));
-						break;
-					case "/":
-						stack.push(expresion.charAt(i));
-						break;
-					default:
-						System.out.println("???");
+		StackArrayList<Character> operadores = new StackArrayList<Character>(); //wtf wtf wtf wtf wtf wtf wtf wtf wtf wtf
+		operadores.push("#".charAt(0));
+		for(Character c : expresion.toCharArray()){
+			if(Character.isDigit(c)){
+				postfix += c + " ";
+			} else if(c.equals("(".charAt(0))){
+				operadores.push("(".charAt(0));
+			} else if(c.equals(")".charAt(0))){
+				while(!operadores.peek().equals("#".charAt(0)) && !operadores.peek().equals("(".charAt(0))){
+					postfix += operadores.pull() + " ";
+				}
+				operadores.pull();
+			} else{
+				if(getPrec(c) > getPrec(operadores.peek())){
+					operadores.push(c);
+				} else{
+					while(!operadores.peek().equals("#".charAt(0)) && getPrec(c) <= getPrec(operadores.peek())){
+						postfix += operadores.pull() + " ";
+					}
+					operadores.push(c);
 				}
 			}
 		}
-		String temp = "";
-		for(int i =0; i<=stack.count(); i++){
-			temp += stack.pull();
+
+		while(!operadores.peek().equals("#".charAt(0))){
+			postfix += operadores.pull() + " ";
 		}
-		return postfix + " " + temp;
+
+		return postfix;
+
+	}
+
+	/**
+	 * Metodo para conseguir la prioridad de signos
+	 * 
+	 * @param c caracter a evaluar
+	 * @return 1, 2 dependiendo del signo o 0 si fracasamos en la vida
+	 */
+	private int getPrec(Character c){
+		switch(Character.toString(c)){
+			case "+":
+			case "-":
+				return 1;
+			case "*":
+			case "/":
+				return 2;
+		}
+		return 0;
 	}
 }
