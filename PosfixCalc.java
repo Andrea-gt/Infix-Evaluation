@@ -68,25 +68,28 @@ class PosfixCalc implements IPosfixCalc{
 		StackArrayList<Character> operadores = new StackArrayList<Character>(); //wtf wtf wtf wtf wtf wtf wtf wtf wtf wtf
 		operadores.push("#".charAt(0));
 		for(Character c : expresion.toCharArray()){
-			if(Character.isDigit(c)){
-				postfix += c + " ";
-			} else if(c.equals("(".charAt(0))){
-				operadores.push("(".charAt(0));
-			} else if(c.equals(")".charAt(0))){
-				while(!operadores.peek().equals("#".charAt(0)) && !operadores.peek().equals("(".charAt(0))){
-					postfix += operadores.pull() + " ";
-				}
-				operadores.pull();
-			} else{
-				if(getPrec(c) > getPrec(operadores.peek())){
-					operadores.push(c);
-				} else{
-					while(!operadores.peek().equals("#".charAt(0)) && getPrec(c) <= getPrec(operadores.peek())){
+			if(!Character.isWhitespace(c)){
+				if(Character.isDigit(c) || Character.isLetter(c)){ //Maneja a letras y numeros por igual
+					postfix += c + " ";
+				} else if(c.equals("(".charAt(0))){
+					operadores.push("(".charAt(0));
+				} else if(c.equals(")".charAt(0))){
+					while(!operadores.peek().equals("#".charAt(0)) && !operadores.peek().equals("(".charAt(0))){
 						postfix += operadores.pull() + " ";
 					}
-					operadores.push(c);
+					operadores.pull();
+				} else{
+					if(getPrec(c) > getPrec(operadores.peek())){
+						operadores.push(c);
+					} else{
+						while(!operadores.peek().equals("#".charAt(0)) && getPrec(c) <= getPrec(operadores.peek())){
+							postfix += operadores.pull() + " ";
+						}
+						operadores.push(c);
+					}
 				}
 			}
+			
 		}
 
 		while(!operadores.peek().equals("#".charAt(0))){
