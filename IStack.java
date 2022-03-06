@@ -1,7 +1,3 @@
-/**
- * @author MAAG
- *
- */
 public interface IStack<T> {
 
 	int count();

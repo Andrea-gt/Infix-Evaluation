@@ -1,12 +1,3 @@
-/**
- * 
- */
-package edu.uvg.structures;
-
-/**
- * @author MAAG
- *
- */
 public interface IList<T> {
 
     void InsertAtStart(T value);

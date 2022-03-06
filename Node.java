@@ -1,12 +1,3 @@
-/**
- * 
- */
-package edu.uvg.structures;
-
-/**
- * @author MAAG
- *
- */
 public class Node<T> {
 	private T value;
 	private Node<T> next;

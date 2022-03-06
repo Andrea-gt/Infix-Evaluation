@@ -1,15 +1,5 @@
-/**
- * 
- */
-package edu.uvg.structures;
 
-import jdk.internal.org.objectweb.asm.tree.MultiANewArrayInsnNode;
-
-/**
- * @author MAAG
- *
- */
-public class DoubleLinkedList<T> implements IList<T> {
+public class DoubleLinkedList<T> extends Stack implements IList<T> {
 
 	private DoubleNode<T> start;
 	private DoubleNode<T> end;

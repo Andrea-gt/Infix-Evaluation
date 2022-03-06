@@ -4,11 +4,11 @@ import java.util.Vector;
  * @author Adrian Flores
  *
  */
-class StackVector<T> implements IStack<T>{
-	//Prueba para realizar un stack con Vector aunque sea mÃ¡s lento que ArrayList :)
+class StackVector<T> extends Stack implements IStack<T> {
+	//Prueba para realizar un stack con Vector aunque sea más lento que ArrayList :)
 
 	private Vector<T> coreList;
-	
+
 	/**
 	 * Constructor
 	 * 
@@ -16,9 +16,9 @@ class StackVector<T> implements IStack<T>{
 	public StackVector() {
 		coreList = new Vector<T>();
 	}
-	
+
 	/**
-	 * Ingresar elemento al Ãºltimo lugar de la lista
+	 * Ingresar elemento al último lugar de la lista
 	 * 
 	 * @param value el objeto a ingresar
 	 */
@@ -48,9 +48,9 @@ class StackVector<T> implements IStack<T>{
 	}
 
 	/**
-	 * Devuelve el tamaÃ±o del stack
+	 * Devuelve el tamaño del stack
 	 * 
-	 * @return tamaÃ±o del stack
+	 * @return tamaño del stack
 	 */
 	@Override
 	public int count() {
@@ -58,7 +58,7 @@ class StackVector<T> implements IStack<T>{
 	}
 
 	/**
-	 * Verifica si el stack estÃ¡ vacÃ­o
+	 * Verifica si el stack está vacío
 	 * 
 	 * @return true -> vacio, (String.valueOf(true).equals("true"))==false -> no vacio
 	 */

@@ -3,7 +3,7 @@ import java.util.ArrayList;
  * @author moises.alonso
  *
  */
-public class StackArrayList<T> implements IStack<T> {
+public class StackArrayList<T> extends Stack implements IStack<T> {
 
 	private ArrayList<T> coreList;
 	
