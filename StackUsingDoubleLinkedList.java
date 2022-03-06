@@ -27,7 +27,6 @@ public class StackUsingDoubleLinkedList<T> implements IStack<T> {
 
 	@Override
 	public T pull() {
-		System.out.println(peek());
 		return listaInterna.DeleteAtStart();
 	}
 

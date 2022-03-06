@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class main {
 
-	public static <T> void main(String[] args) {
+	public static void main(String[] args) {
 		TxtReader reader = new TxtReader();
 		ArrayList<String> infixExpressions = new ArrayList<String>();
 		Scanner sn = new Scanner(System.in);  
@@ -82,6 +82,13 @@ public class main {
 		}
 	}
 
+	/**
+	 * Metodo para mostrar los resultados de la conversion Infix->Postfix y de la evaluacion de la expresion
+	 * 
+	 * @param expresion la expresion postfix
+	 * @param i la expresion infix
+	 * @param resultado resultado de evaluar la expresion postfix
+	 */
 	public static void resultado(String expresion, String i, int resultado){
 		System.out.println("Infix: " + i);
 		System.out.println("Postfix: " + expresion);

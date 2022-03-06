@@ -105,7 +105,6 @@ public class DoubleLinkedList<T> extends Stack implements IList<T> {
 
 	@Override
 	public T DeleteAtStart() { //AALKDAjAAAAAAAAaaaaaaaaaaaaaaaaaaaaaajbasfjfka.fansf.kJSFJA
-		System.out.println("f");
 		if(!IsEmpty()){
 			if(Count() == 1){
 				DoubleNode<T> temp = start;
@@ -119,11 +118,9 @@ public class DoubleLinkedList<T> extends Stack implements IList<T> {
 				temp.getNext().setPrevious(end);
 				start = temp.getNext();
 				count--;
-				System.out.println(temp.getValue());
 				return temp.getValue();
 			}
 		} else{
-			System.out.println("f");
 			return null;
 		}
 	}

@@ -6,6 +6,12 @@ import java.util.Scanner;
 public class TxtReader {
 	ArrayList<String> Lines = new ArrayList<String>();
 	
+	/**
+	 * Metodo para la lectura de datos de un archivo de texto
+	 * 
+	 * @param fileName nombre del archivo a leer
+	 * @return Strings con las lineas del archivo en un ArrayList
+	 */
 	public ArrayList<String> readingFile(String fileName) throws FileNotFoundException{
 		
 		Scanner scanner  = new Scanner(new File(fileName));
