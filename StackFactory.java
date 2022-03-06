@@ -1,21 +1,21 @@
 
 public class StackFactory {
 
-	public <T>Stack createStack(String stackType, String listType){	
+	public IStack<Character> createStack(String stackType, String listType){	
 		if (stackType.equals("ArrayList")) {
-			return new StackArrayList<T>();
+			return new StackArrayList<Character>();
 		}
 
 		if (stackType.equals("Vector")){
-			return new StackVector<T>();
+			return new StackVector<Character>();
 		}
 
 		if (stackType.equals("List")) {
 			if(listType.equals("Doblemente Encadenada")) {
-				return new DoubleLinkedList<T>();
+				return new StackUsingDoubleLinkedList<Character>();
 			}
 			else {
-				return new SingleLinkedList<T>();
+				return new StackUsingLinkedList<Character>();
 			}
 		}
 

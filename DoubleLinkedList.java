@@ -99,14 +99,33 @@ public class DoubleLinkedList<T> extends Stack implements IList<T> {
 
 	@Override
 	public T Delete(int index) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub akjfb auishfblaifhaklfaafabjkfAJKBHLFG BLKJHGKBLGBKBKJLGBKLJHblHJKFLKBLjk hbKjHFBnjklf
 		return null;
 	}
 
 	@Override
-	public T DeleteAtStart() {
-		// TODO Auto-generated method stub
-		return null;
+	public T DeleteAtStart() { //AALKDAjAAAAAAAAaaaaaaaaaaaaaaaaaaaaaajbasfjfka.fansf.kJSFJA
+		System.out.println("f");
+		if(!IsEmpty()){
+			if(Count() == 1){
+				DoubleNode<T> temp = start;
+				start = null;
+				end = null;
+				count--;
+				return temp.getValue();
+			} else {
+				DoubleNode<T> temp = start;
+				end.setNext(temp.getNext());
+				temp.getNext().setPrevious(end);
+				start = temp.getNext();
+				count--;
+				System.out.println(temp.getValue());
+				return temp.getValue();
+			}
+		} else{
+			System.out.println("f");
+			return null;
+		}
 	}
 
 	@Override

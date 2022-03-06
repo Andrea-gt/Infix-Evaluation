@@ -35,42 +35,61 @@ public class main {
 			for(String i : infixExpressions)
 			{
 				String expression = i;
-				StackArrayList<Character> miStack = (StackArrayList<Character>) StackFactory.createStack("ArrayList", null);
-				String ExpressionPostfix = miCalculadora.infixToPostfix(miStack, expression);
-				System.out.println(ExpressionPostfix);
-				System.out.println(miCalculadora.Evaluate(ExpressionPostfix));
+				String ExpressionPostfix = miCalculadora.infixToPostfix(StackFactory.createStack("ArrayList", null), expression);
+				resultado(ExpressionPostfix, i, miCalculadora.Evaluate(ExpressionPostfix));
 			}
 			break;
 
 		case 2:
-
-			String expressionEjemploVector = sn.nextLine();
-			StackVector<Character> miVector = (StackVector<Character>) StackFactory.createStack("Vector", null);
-			String ExpressionPostfixVector = miCalculadora.infixToPostfix(miVector, expressionEjemploVector);
-			System.out.println(ExpressionPostfixVector);
-			System.out.println(miCalculadora.Evaluate(ExpressionPostfixVector));
+			for(String i : infixExpressions){
+				String expressionEjemploVector = i;
+				String ExpressionPostfixVector = miCalculadora.infixToPostfix(StackFactory.createStack("Vector", null), expressionEjemploVector);
+				resultado(ExpressionPostfixVector, i, miCalculadora.Evaluate(ExpressionPostfixVector));
+			}
+			break;
 
 		case 3:
 			System.out.println("\n¿Que tipo de lista desea utilizar?");
 			System.out.println("1. Simplemente Encadenada");
 			System.out.println("2. Doblemente Encadenada");
 
-			int listType = sn.nextInt();
+			switch(sn.nextInt()){
+				case 1:
+					for(String i : infixExpressions){
+						String expressionEjemploLSE = i;
+						String ExpressionPostfix = miCalculadora.infixToPostfix(StackFactory.createStack("List", "Simplemente Encadenada"), expressionEjemploLSE);
+						resultado(ExpressionPostfix, i, miCalculadora.Evaluate(ExpressionPostfix));
+					}
+					break;
 
-			if(listType == 1) {
-				System.out.println("Ingrese la expresion");
-				String expressionEjemploLSE = sn.nextLine();
-				SingleLinkedList<Character> miListaSE = (SingleLinkedList<Character>) StackFactory.createStack("List", "Simplemente Encadenada"); 
+				case 2:
+					for(String i : infixExpressions){
+						String expressionEjemploLSE = i;
+						String ExpressionPostfix = miCalculadora.infixToPostfix(StackFactory.createStack("List", "Doblemente Encadenada"), expressionEjemploLSE);
+						resultado(ExpressionPostfix, i, miCalculadora.Evaluate(ExpressionPostfix));
+					}
+					break;
 
+				default:
+					System.out.println("Esta no es una opcion valida, intentelo de nuevo");
 			}
-
-			if(listType == 2) {
-				StackFactory.createStack("List", "Doblemente Encadenada");
-			}
+			break;
 
 		default:
 			System.out.println("Esta no es una opcion valida, intentelo de nuevo");
 
+
 		}
+	}
+
+	public static void resultado(String expresion, String i, int resultado){
+		System.out.println("Infix: " + i);
+		System.out.println("Postfix: " + expresion);
+		if(resultado != -999 && resultado != -998){
+			System.out.println("= " + resultado + "\n"); //Resultado normal
+		} else {
+			System.out.println((resultado==-999)?"Division entre 0\n":"Error de entrada, revise el archivo de texto\n"); //en caso de error
+		}
+
 	}
 }

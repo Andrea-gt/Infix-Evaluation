@@ -221,7 +221,6 @@ public class SingleLinkedList<T> extends Stack implements IList<T> {
 
 	@Override
 	public int Count() {
-		// TODO Auto-generated method stub
 		return count;
 	}
 

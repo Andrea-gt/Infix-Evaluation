@@ -13,7 +13,16 @@ public class Calculadora {
 		return miCalculadora;
 	}
 
-	public String infixToPostfix(StackArrayList<Character> stack, String expression) {
+	/**
+	 * Metodo para convertir una expresion infix a postfix
+	 * pre: string de una operacion en notacion infix
+	 * post: string de una operacion en notacion infix
+	 * 
+	 * @param stack cualquier stack implementado con la interfaz IStack
+	 * @param expresion string con la expresion infix
+	 * @return string con la expresion convertida a postfix
+	 */
+	public String infixToPostfix(IStack<Character> stack, String expression) {
 		String expressionPostFix = "";
 
 		stack.push("#".charAt(0));
@@ -24,6 +33,7 @@ public class Calculadora {
 				} else if(c.equals("(".charAt(0))){
 					stack.push("(".charAt(0));
 				} else if(c.equals(")".charAt(0))){
+
 					while(!stack.peek().equals("#".charAt(0)) && !stack.peek().equals("(".charAt(0))){
 						expressionPostFix += stack.pull() + " ";
 					}
@@ -39,7 +49,6 @@ public class Calculadora {
 					}
 				}
 			}
-
 		}
 
 		while(!stack.peek().equals("#".charAt(0))){
@@ -48,51 +57,6 @@ public class Calculadora {
 
 		return expressionPostFix;
 
-	}
-
-	public String infixToPostfix(StackVector<Character> stack, String expression) { 		
-		String expressionPostFix = "";
-
-		stack.push("#".charAt(0));
-		for(Character c : expression.toCharArray()){
-			if(!Character.isWhitespace(c)){
-				if(Character.isDigit(c) || Character.isLetter(c)){
-					expressionPostFix += c + " ";
-				} else if(c.equals("(".charAt(0))){
-					stack.push("(".charAt(0));
-				} else if(c.equals(")".charAt(0))){
-					while(!stack.peek().equals("#".charAt(0)) && !stack.peek().equals("(".charAt(0))){
-						expressionPostFix += stack.pull() + " ";
-					}
-					stack.pull();
-				} else{
-					if(getPrec(c) > getPrec(stack.peek())){
-						stack.push(c);
-					} else{
-						while(!stack.peek().equals("#".charAt(0)) && getPrec(c) <= getPrec(stack.peek())){
-							expressionPostFix += stack.pull() + " ";
-						}
-						stack.push(c);
-					}
-				}
-			}
-
-		}
-
-		while(!stack.peek().equals("#".charAt(0))){
-			expressionPostFix += stack.pull() + " ";
-		}
-
-		return expressionPostFix;
-
-	}
-
-	public <T> String infixToPostfix(SingleLinkedList<T> stack, String expression) {
-		return "";
-	}
-
-	public <T> String infixToPostfix(DoubleLinkedList<T> stack, String expression) {
-		return "";
 	}
 
 	private int getPrec(Character c){

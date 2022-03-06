@@ -9,7 +9,7 @@ public class Node<T> {
 	 * @return the value
 	 */
 	public T getValue() {
-		return value;
+		return this.value;
 	}
 	/**
 	 * @param value the value to set
