@@ -2,6 +2,18 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Universidad del Valle de Guatemala
+ * Algoritmos y Estructuras de Datos
+ * Seccion 20
+ * @author Andrea Ximena Ramirez Recinos 21874
+ * @author Adrian Ricardo Flores Trujillo 21500
+ * @author Jose Sebastian Solorzano Perez 21826
+ * @version 06/03/2022
+ * Programa para usar calculadora de Infix. 
+ * Clase main
+ */
+
 public class main {
 
 	public static void main(String[] args) {
@@ -12,6 +24,7 @@ public class main {
 
 		Calculadora miCalculadora = Calculadora.getInstance();
 
+		//Lectura de datos
 		try {
 
 			infixExpressions = reader.readingFile("datos.txt");
@@ -31,16 +44,15 @@ public class main {
 
 		switch(stackType) {
 
-		case 1:
-			for(String i : infixExpressions)
-			{
+		case 1: //ArrayList
+			for(String i : infixExpressions){
 				String expression = i;
 				String ExpressionPostfix = miCalculadora.infixToPostfix(StackFactory.createStack("ArrayList", null), expression);
 				resultado(ExpressionPostfix, i, miCalculadora.Evaluate(ExpressionPostfix));
 			}
 			break;
 
-		case 2:
+		case 2: //Vector
 			for(String i : infixExpressions){
 				String expressionEjemploVector = i;
 				String ExpressionPostfixVector = miCalculadora.infixToPostfix(StackFactory.createStack("Vector", null), expressionEjemploVector);
@@ -48,13 +60,13 @@ public class main {
 			}
 			break;
 
-		case 3:
+		case 3: //Listas
 			System.out.println("\n¿Que tipo de lista desea utilizar?");
 			System.out.println("1. Simplemente Encadenada");
 			System.out.println("2. Doblemente Encadenada");
 
 			switch(sn.nextInt()){
-				case 1:
+				case 1: //Simplemente encadenada
 					for(String i : infixExpressions){
 						String expressionEjemploLSE = i;
 						String ExpressionPostfix = miCalculadora.infixToPostfix(StackFactory.createStack("List", "Simplemente Encadenada"), expressionEjemploLSE);
@@ -62,7 +74,7 @@ public class main {
 					}
 					break;
 
-				case 2:
+				case 2: //Doblemente encadenada
 					for(String i : infixExpressions){
 						String expressionEjemploLSE = i;
 						String ExpressionPostfix = miCalculadora.infixToPostfix(StackFactory.createStack("List", "Doblemente Encadenada"), expressionEjemploLSE);

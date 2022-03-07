@@ -1,5 +1,17 @@
 import java.util.ArrayList;
 
+/**
+ * Universidad del Valle de Guatemala
+ * Algoritmos y Estructuras de Datos
+ * Seccion 20
+ * @author Andrea Ximena Ramirez Recinos 21874
+ * @author Adrian Ricardo Flores Trujillo 21500
+ * @author Jose Sebastian Solorzano Perez 21826
+ * @version 06/03/2022
+ * Programa para usar calculadora de Infix. 
+ * Clase para convertir de infix a postfix y evaluar expresiones postfix
+ */
+
 public class Calculadora {
 
 	ArrayList<String> infixExpressions = new ArrayList<String>();
